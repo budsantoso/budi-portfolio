@@ -10,14 +10,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: baseUrl,
       lastModified: currentDate,
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/projects`,
       lastModified: currentDate,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.9,
     },
   ];
 
@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/projects/${project.slug}`,
     lastModified: currentDate,
     changeFrequency: "monthly",
-    priority: 0.7,
+    priority: 0.8,
   }));
 
   return [...staticRoutes, ...projectRoutes];

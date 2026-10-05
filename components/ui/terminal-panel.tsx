@@ -28,9 +28,9 @@ export function TerminalPanel({
     >
       <div className="flex items-center justify-between border-b border-zinc-800 bg-zinc-900/60 px-4 py-2.5">
         <div className="flex items-center gap-1.5">
-          <div className="size-2.5 rounded-full bg-zinc-700" />
-          <div className="size-2.5 rounded-full bg-zinc-700" />
-          <div className="size-2.5 rounded-full bg-zinc-700" />
+          <div className="size-2.5 rounded-full bg-red-500/80" />
+          <div className="size-2.5 rounded-full bg-amber-500/80" />
+          <div className="size-2.5 rounded-full bg-emerald-500/80" />
         </div>
         <span className="text-[11px] text-zinc-400 font-medium">{title}</span>
         <div className="w-9" />
@@ -45,7 +45,11 @@ export function TerminalPanel({
               </>
             ) : line.type === "success" ? (
               <>
-                <span className="text-emerald-400 select-none">✓</span>
+                <span className="text-emerald-400 select-none">
+                  <svg className="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
                 <span className="text-zinc-300">{line.text}</span>
               </>
             ) : line.type === "info" ? (
@@ -58,6 +62,11 @@ export function TerminalPanel({
             )}
           </div>
         ))}
+        {/* Typing cursor */}
+        <div className="flex items-center gap-2">
+          <span className="text-zinc-500 select-none">$</span>
+          <span className="inline-block w-2 h-4 bg-zinc-400 animate-pulse" />
+        </div>
       </div>
     </div>
   );

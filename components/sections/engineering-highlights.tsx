@@ -10,6 +10,22 @@ import { Server, Database, Plug, RefreshCw } from "lucide-react";
 
 const icons = [Server, Database, Plug, RefreshCw];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
+
 export function EngineeringHighlights() {
   return (
     <Section id="engineering" className="border-t border-border/40">
@@ -20,22 +36,29 @@ export function EngineeringHighlights() {
           description="Core engineering competencies developed across real production systems."
         />
 
-        <div className="grid gap-6 sm:grid-cols-2">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid gap-6 sm:grid-cols-2"
+        >
           {engineeringHighlights.map((h, i) => {
             const Icon = icons[i] ?? Server;
             return (
               <motion.div
                 key={h.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="rounded-lg border border-border/60 bg-card p-6"
+                variants={itemVariants}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                className="rounded-lg border border-border/60 bg-card p-6 transition-shadow hover:shadow-md"
               >
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex size-9 items-center justify-center rounded-md bg-muted">
+                  <motion.div
+                    whileHover={{ rotate: 5, scale: 1.05 }}
+                    className="flex size-9 items-center justify-center rounded-md bg-muted"
+                  >
                     <Icon className="size-4 text-foreground" />
-                  </div>
+                  </motion.div>
                   <div>
                     <h3 className="text-base font-semibold">{h.title}</h3>
                     <p className="text-xs text-muted-foreground">{h.category}</p>
@@ -63,7 +86,7 @@ export function EngineeringHighlights() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </Container>
     </Section>
   );

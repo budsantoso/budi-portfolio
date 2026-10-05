@@ -6,23 +6,23 @@ export interface SkillGroup {
 export const skills: SkillGroup[] = [
   {
     category: "Backend",
-    skills: ["PHP", "Laravel", "Python"],
+    skills: ["Python", "FastAPI", "PHP", "Laravel", "JavaScript", "TypeScript"],
   },
   {
-    category: "Frontend",
-    skills: ["JavaScript", "TypeScript", "HTML", "CSS", "Bootstrap", "jQuery"],
+    category: "Database & Data",
+    skills: ["MySQL", "SQL Server", "Oracle", "Query Tuning", "Indexing", "Partitioning", "ETL/ELT"],
   },
   {
-    category: "Database",
-    skills: ["SQL Server", "MySQL", "Oracle"],
+    category: "APIs & Integration",
+    skills: ["REST API", "OAuth2", "Laravel Passport", "Midtrans", "Xendit", "DOKU", "Webhook"],
   },
   {
-    category: "Integration",
-    skills: ["REST API", "OAuth2", "Laravel Passport", "Midtrans", "Webhook"],
+    category: "Infrastructure",
+    skills: ["Linux", "Docker", "CI/CD", "Async Queues", "Background Workers"],
   },
   {
     category: "Storage",
-    skills: ["S3-compatible storage", "MinIO"],
+    skills: ["S3-compatible", "MinIO"],
   },
   {
     category: "Tools",

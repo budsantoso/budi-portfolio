@@ -185,4 +185,142 @@ export const projects: Project[] = [
       "S3-compatible storage provides flexibility for future cloud migration",
     ],
   },
+  {
+    slug: "microservices-api-gateway",
+    title: "Microservices API Gateway",
+    category: "Backend Architecture / API Gateway",
+    summary:
+      "Designed and implemented a high-performance API gateway using FastAPI that routes requests to multiple microservices, handles authentication, rate limiting, and load balancing across distributed backend services.",
+    technologies: ["FastAPI", "Python", "Redis", "Nginx", "Docker", "JWT"],
+    featured: true,
+    problem:
+      "Monolithic API was becoming a bottleneck with growing service complexity. Different teams needed independent deployment cycles, but clients required a unified entry point with consistent authentication and rate limiting.",
+    solution:
+      "Built a FastAPI-based API gateway that acts as a reverse proxy, routing requests to appropriate microservices while centralizing cross-cutting concerns like auth, rate limiting, caching, and request/response transformation.",
+    architecture: [
+      "FastAPI gateway layer handling request routing and validation",
+      "Redis-backed rate limiter with sliding window algorithm",
+      "JWT authentication middleware with token refresh logic",
+      "Nginx reverse proxy for SSL termination and static file serving",
+      "Docker Compose orchestration for local development parity",
+      "Service discovery pattern for dynamic microservice registration",
+    ],
+    challenges: [
+      "Implementing consistent error handling across heterogeneous microservices",
+      "Designing a rate limiting strategy that prevents abuse without blocking legitimate traffic",
+      "Handling distributed tracing across service boundaries",
+      "Managing JWT token refresh without disrupting active user sessions",
+    ],
+    features: [
+      "Dynamic request routing to 5+ microservices based on path patterns",
+      "Redis-based rate limiting (100 req/min per API key)",
+      "JWT authentication with automatic token refresh",
+      "Request/response logging with correlation IDs",
+      "Health check aggregation across all downstream services",
+      "OpenAPI documentation auto-generated from service schemas",
+    ],
+    impact: [
+      "Reduced API response latency by 40% through intelligent caching",
+      "Enabled independent deployment cycles for 3 backend teams",
+      "Prevented DDoS incidents through rate limiting and request validation",
+      "Unified authentication reduced token management complexity by 60%",
+    ],
+    lessons: [
+      "API gateways should be stateless; all session data belongs in Redis or client tokens",
+      "Circuit breaker patterns are essential for graceful degradation",
+      "Correlation IDs make distributed debugging significantly easier",
+    ],
+  },
+  {
+    slug: "payment-reconciliation-system",
+    title: "Payment Reconciliation System",
+    category: "Financial Systems / Data Integrity",
+    summary:
+      "Built an automated payment reconciliation engine that matches transactions across multiple payment gateways (Midtrans, Xendit, DOKU) against internal financial records, flagging discrepancies and generating audit reports.",
+    technologies: ["Laravel", "Python", "MySQL", "Redis", "Midtrans", "Xendit", "DOKU"],
+    featured: true,
+    problem:
+      "Manual reconciliation of payment data across multiple gateways was consuming 20+ hours weekly, with frequent human errors causing financial discrepancies that took days to identify and resolve.",
+    solution:
+      "Developed a hybrid Laravel/Python reconciliation engine that fetches settlement files from all payment providers, normalizes data formats, matches against internal transaction records, and automatically flags mismatches for review.",
+    architecture: [
+      "Laravel scheduler triggering daily reconciliation jobs",
+      "Python ETL scripts fetching and normalizing gateway settlement files",
+      "MySQL staging tables for raw data before matching",
+      "Redis queue for async processing of large settlement batches",
+      "Rule engine for configurable matching criteria (amount, date, reference)",
+      "Automated email alerts for unmatched transactions exceeding thresholds",
+    ],
+    challenges: [
+      "Each payment gateway uses different file formats and settlement cycles",
+      "Handling timezone differences across international payment processors",
+      "Reconciling partial refunds and chargebacks against original transactions",
+      "Ensuring idempotency when re-processing failed reconciliation batches",
+    ],
+    features: [
+      "Automated daily reconciliation across Midtrans, Xendit, and DOKU",
+      "Fuzzy matching algorithm for transactions with slight reference variations",
+      "Discrepancy dashboard with drill-down to individual transactions",
+      "Exportable audit reports for accounting compliance",
+      "Configurable tolerance rules for amount mismatches (e.g., ±1%)",
+      "Automatic retry with exponential backoff for failed gateway API calls",
+    ],
+    impact: [
+      "Reduced reconciliation time from 20+ hours to under 30 minutes daily",
+      "Eliminated 95% of manual data entry errors through automation",
+      "Identified Rp 50M+ in unreconciled transactions within first month",
+      "Accounting team confidence improved through audit trail transparency",
+    ],
+    lessons: [
+      "Financial reconciliation demands immutable audit logs at every step",
+      "Fuzzy matching is essential when dealing with human-entered reference numbers",
+      "Idempotent job design prevents double-counting during retries",
+    ],
+  },
+  {
+    slug: "multi-tenant-saas-backend",
+    title: "Multi-tenant SaaS Backend",
+    category: "SaaS Architecture / Backend Systems",
+    summary:
+      "Architected a scalable multi-tenant SaaS backend using Laravel with PostgreSQL, implementing tenant isolation, role-based access control, and subscription billing for a B2B platform serving 50+ organizations.",
+    technologies: ["Laravel", "PostgreSQL", "Redis", "Docker", "Stripe", "AWS S3"],
+    featured: true,
+    problem:
+      "Startup needed to launch a B2B SaaS platform serving multiple organizations with strict data isolation requirements, but lacked infrastructure for tenant separation, subscription management, and scalable file storage.",
+    solution:
+      "Designed a multi-tenant architecture using PostgreSQL schema-per-tenant pattern with Laravel, integrated Stripe for subscription billing, and implemented comprehensive RBAC with resource-level permissions.",
+    architecture: [
+      "Laravel middleware for tenant identification via subdomain",
+      "PostgreSQL schema-per-tenant with shared users table",
+      "Redis caching layer per tenant with prefixed keys",
+      "Stripe Billing integration for subscription management",
+      "AWS S3 with tenant-prefixed object paths for file isolation",
+      "Docker multi-stage builds for production deployment",
+    ],
+    challenges: [
+      "Ensuring zero cross-tenant data leakage through query scoping",
+      "Migrating existing single-tenant data to schema-per-tenant model",
+      "Handling subscription downgrades with data retention policies",
+      "Optimizing PostgreSQL performance with 50+ active schemas",
+    ],
+    features: [
+      "Automatic tenant provisioning with isolated database schema",
+      "Role-based access control with 12 permission levels",
+      "Stripe subscription management with trial periods and proration",
+      "Tenant-specific file storage with S3 prefix isolation",
+      "Usage analytics dashboard per tenant",
+      "Automated database backup per tenant schema",
+    ],
+    impact: [
+      "Onboarded 50+ organizations within 6 months of launch",
+      "Achieved 99.9% uptime with zero cross-tenant data incidents",
+      "Reduced infrastructure cost by 40% vs separate instance-per-tenant approach",
+      "Subscription revenue grew 300% through automated billing workflows",
+    ],
+    lessons: [
+      "Schema-per-tenant strikes the best balance of isolation and cost for <1000 tenants",
+      "Query scoping must be enforced at framework level, not relying on developer discipline",
+      "Subscription state machines are surprisingly complex — model them explicitly",
+    ],
+  },
 ];

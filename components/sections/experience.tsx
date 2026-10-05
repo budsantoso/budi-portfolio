@@ -8,6 +8,22 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+};
+
 export function Experience() {
   return (
     <Section id="experience" className="border-t border-border/40">
@@ -18,21 +34,31 @@ export function Experience() {
           description="A timeline of roles building business applications, backend systems, and data-driven solutions."
         />
 
-        <div className="relative space-y-10 pl-6 before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-px before:bg-border sm:pl-8 before:sm:left-[9px]">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="relative space-y-10 pl-6 before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-px before:bg-border sm:pl-8 before:sm:left-[9px]"
+        >
           {experiences.map((exp, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: -12 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
+              variants={itemVariants}
+              whileHover={{ x: 4, transition: { duration: 0.2 } }}
               className="relative"
             >
-              <div className="absolute -left-6 top-1.5 flex size-4 items-center justify-center rounded-full border border-border bg-background sm:-left-8 sm:size-5">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 + 0.2, type: "spring", stiffness: 200 }}
+                className="absolute -left-6 top-1.5 flex size-4 items-center justify-center rounded-full border border-border bg-background sm:-left-8 sm:size-5"
+              >
                 <Briefcase className="size-2.5 text-muted-foreground sm:size-3" />
-              </div>
+              </motion.div>
 
-              <div className="rounded-lg border border-border/60 bg-card p-5 sm:p-6">
+              <div className="rounded-lg border border-border/60 bg-card p-5 sm:p-6 transition-shadow hover:shadow-md">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div>
                     <h3 className="text-base font-semibold sm:text-lg">{exp.role}</h3>
@@ -63,7 +89,7 @@ export function Experience() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </Section>
   );

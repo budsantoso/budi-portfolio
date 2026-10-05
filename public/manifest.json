@@ -1,0 +1,21 @@
+{
+  "name": "Budi Agung Santoso — Senior Backend Engineer & Data Specialist",
+  "short_name": "Budi Agung Santoso",
+  "description": "Senior Backend Engineer & Data Specialist with 5+ years experience in Python, FastAPI, PHP, Laravel, SQL, ETL pipelines, and payment gateway integrations. Remote-ready.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/images/profile.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/images/profile.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

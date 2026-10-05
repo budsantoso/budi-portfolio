@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,16 +9,60 @@ import { profile } from "@/data/profile";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "Home", href: "/#" },
-  { label: "About", href: "/#about" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Projects", href: "/#projects" },
-  { label: "Engineering", href: "/#engineering" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Home", href: "#" },
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Engineering", href: "#engineering" },
+  { label: "Skills", href: "#skills" },
+  { label: "Articles", href: "#articles" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map((item) => {
+        const id = item.href.replace("#", "");
+        const el = id ? document.getElementById(id) : document.body;
+        if (!el) return { href: item.href, top: Infinity };
+        const rect = el.getBoundingClientRect();
+        return { href: item.href, top: rect.top };
+      });
+
+      const current = sections.reduce((closest, section) => {
+        if (section.top <= 100 && section.top > closest.top) {
+          return section;
+        }
+        return closest;
+      }, { href: "#", top: -Infinity });
+
+      setActiveSection(current.href);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const id = href.replace("#", "");
+    if (!id) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        const offset = 56;
+        const top = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    }
+    setMobileOpen(false);
+  };
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
@@ -29,16 +73,28 @@ export function Navbar() {
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href;
+            return (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={cn(
+                    "relative rounded-md px-3 py-1.5 text-sm transition-colors",
+                    isActive
+                      ? "text-foreground font-medium"
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-primary" />
+                  )}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-1">
@@ -72,17 +128,25 @@ export function Navbar() {
         )}
       >
         <ul className="flex flex-col gap-1 px-4 py-3">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className="block rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href;
+            return (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={cn(
+                    "block rounded-md px-3 py-2 text-sm transition-colors",
+                    isActive
+                      ? "text-foreground font-medium bg-muted"
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
           <li>
             <a
               href={profile.resumePath}
