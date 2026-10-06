@@ -18,7 +18,7 @@ export const profile = {
   },
   linkedin: "https://linkedin.com/in/budi-agung-santoso-61294b145",
   email: "budiagungsantoso572@gmail.com",
-  siteUrl: "REPLACE_WITH_DOMAIN",
+  siteUrl: "https://budi-portfolio-mocha.vercel.app",
   resumePath: "/resume/Budi-Agung-Santoso-CV.pdf",
   education: {
     degree: "Bachelor of Electrical Engineering",

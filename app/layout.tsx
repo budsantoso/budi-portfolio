@@ -42,6 +42,14 @@ export const metadata: Metadata = {
   publisher: profile.name,
   keywords: [
     "Budi Agung Santoso",
+    "Budi Agung Santoso Backend",
+    "Budi Agung Santoso Developer",
+    "Budi Agung Santoso Engineer",
+    "Budi Agung Santoso Portfolio",
+    "Budi Agung Santoso FastAPI",
+    "Budi Agung Santoso Laravel",
+    "Budi Agung Santoso Indonesia",
+    "Budi Agung Santoso Remote",
     "Senior Backend Engineer",
     "Data Specialist",
     "Python Developer",
@@ -114,6 +122,7 @@ export const metadata: Metadata = {
   classification: "Software Engineering, Backend Development, Data Engineering",
   referrer: "origin-when-cross-origin",
   other: {
+    "google-site-verification": "REPLACE_WITH_GOOGLE_SITE_VERIFICATION",
     "contact:email": profile.email,
     "contact:phone": profile.phone,
     "contact:linkedin": profile.linkedin,

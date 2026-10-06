@@ -1,12 +1,11 @@
 import { profile } from "@/data/profile";
 
 export function getBaseUrl(): string {
-  if (profile.siteUrl && !profile.siteUrl.includes("REPLACE_WITH_DOMAIN")) {
-    return profile.siteUrl.startsWith("http")
-      ? profile.siteUrl
-      : `https://${profile.siteUrl}`;
+  const url = profile.siteUrl;
+  if (url && url.startsWith("http")) {
+    return url;
   }
-  return "https://budi-agung-santoso.vercel.app";
+  return "https://budi-portfolio-mocha.vercel.app";
 }
 
 export function getPersonJsonLd() {
