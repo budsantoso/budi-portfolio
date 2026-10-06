@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Budi Agung Santoso — Senior Backend Engineer & Data Specialist
 
-## Getting Started
+Personal portfolio & engineering showcase website built with **Next.js 16 (App Router)**, **TypeScript**, and **Tailwind CSS**.
 
-First, run the development server:
+🌐 **Live Demo:** [budi-portfolio-mocha.vercel.app](https://budi-portfolio-mocha.vercel.app)
+
+---
+
+## 📌 Overview
+
+This repository powers the personal portfolio site of Budi Agung Santoso, showcasing 5+ years of backend engineering, database optimization, and high-throughput API integration experience across production environments.
+
+### Core Sections
+- **Professional Background:** Roles across NTT Ltd., BCA, PT Wells Management Smart, and PT Wellwin Nusantara.
+- **Featured Case Studies:** Technical breakdowns of SFQ legacy modernization, LPPM platform, join payment portal, invoice AI, FastAPI microservice gateway, and multi-tenant SaaS.
+- **Technical Competencies:** Deep dives into DB tuning, idempotent webhook handlers, asynchronous workers, and ETL pipelines.
+- **Articles & Writing:** Practical architecture guides and benchmarks from production scenarios.
+
+---
+
+## 🛠 Tech Stack
+
+- **Framework:** [Next.js 15](https://nextjs.org/) (App Router, Server & Client Components)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components:** Custom Radix UI / Tailwind components
+- **Deployment & Hosting:** [Vercel](https://vercel.com/)
+- **Icons & Theme:** Lucide React, Next-Themes (Dark/Light mode support)
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18.x or later
+- npm, pnpm, or yarn
+
+### Installation
 
 ```bash
+# 1. Clone repository
+git clone https://github.com/budsantoso/budi-portfolio.git
+cd budi-portfolio
+
+# 2. Install dependencies
+npm install
+
+# 3. Start local development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📂 Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+├── app/                  # Next.js App Router pages and layouts
+├── components/           # Reusable UI components & section blocks
+│   └── ui/               # Base UI primitives (cards, buttons, badges)
+├── data/                 # Static data sources (projects, skills, articles, profile)
+├── lib/                  # Helper utilities and SEO metadata generators
+├── public/               # Static assets, images, and downloadable resume
+└── styles/               # Global CSS and Tailwind directives
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📬 Contact & Links
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Portfolio:** [budi-portfolio-mocha.vercel.app](https://budi-portfolio-mocha.vercel.app)
+- **LinkedIn:** [linkedin.com/in/budsantoso](https://linkedin.com)
+- **Email:** budiagungsantoso572@gmail.com
+- **WhatsApp:** [+62 895 6185 84075](https://wa.me/62895618584075)
