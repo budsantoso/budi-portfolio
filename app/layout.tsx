@@ -116,13 +116,13 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "REPLACE_WITH_GOOGLE_SITE_VERIFICATION",
+    google: "DvrjLmGr91uMfYhxnEMTbUkCZuJcOXFQ9zW0Jlp23SI",
   },
   category: "technology",
   classification: "Software Engineering, Backend Development, Data Engineering",
   referrer: "origin-when-cross-origin",
   other: {
-    "google-site-verification": "REPLACE_WITH_GOOGLE_SITE_VERIFICATION",
+    "google-site-verification": "DvrjLmGr91uMfYhxnEMTbUkCZuJcOXFQ9zW0Jlp23SI",
     "contact:email": profile.email,
     "contact:phone": profile.phone,
     "contact:linkedin": profile.linkedin,
