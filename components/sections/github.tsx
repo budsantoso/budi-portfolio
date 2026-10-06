@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { GitHubIcon } from "@/components/ui/icons";
 
 const containerVariants = {
@@ -78,30 +78,39 @@ export function GithubSection() {
             viewport={{ once: true }}
             className="mt-6 grid gap-3 sm:grid-cols-3 pt-6 border-t border-border/40"
           >
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ y: -2, transition: { duration: 0.2 } }}
-              className="rounded-md border border-border/40 bg-muted/20 p-3.5 transition-shadow hover:shadow-sm"
-            >
-              <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">Primary Focus</p>
-              <p className="mt-1 text-sm font-medium text-foreground">Python, FastAPI & Laravel</p>
-            </motion.div>
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ y: -2, transition: { duration: 0.2 } }}
-              className="rounded-md border border-border/40 bg-muted/20 p-3.5 transition-shadow hover:shadow-sm"
-            >
-              <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">Core Stacks</p>
-              <p className="mt-1 text-sm font-medium text-foreground">PHP 8, Python, SQL, Docker</p>
-            </motion.div>
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ y: -2, transition: { duration: 0.2 } }}
-              className="rounded-md border border-border/40 bg-muted/20 p-3.5 transition-shadow hover:shadow-sm"
-            >
-              <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">Ecosystem</p>
-              <p className="mt-1 text-sm font-medium text-foreground">APIs, ETL, Webhooks & Data</p>
-            </motion.div>
+            {[
+              {
+                name: 'fastapi-api-gateway',
+                desc: 'FastAPI Microservices API Gateway with JWT auth & rate limiting',
+                url: 'https://github.com/budsantoso/fastapi-api-gateway',
+              },
+              {
+                name: 'payment-reconciliation-system',
+                desc: 'Payment reconciliation engine for gateway settlements',
+                url: 'https://github.com/budsantoso/payment-reconciliation-system',
+              },
+              {
+                name: 'invoice-intelligence-platform',
+                desc: 'Invoice matching & missing product candidate generator',
+                url: 'https://github.com/budsantoso/invoice-intelligence-platform',
+              },
+            ].map((repo) => (
+              <motion.a
+                key={repo.name}
+                href={repo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={itemVariants}
+                whileHover={{ y: -2, transition: { duration: 0.2 } }}
+                className="group rounded-md border border-border/40 bg-muted/20 p-3.5 transition-shadow hover:shadow-sm"
+              >
+                <div className="flex items-center justify-between">
+                  <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">{repo.name}</p>
+                  <ArrowUpRight className="size-3.5 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </div>
+                <p className="mt-1 text-sm font-medium text-foreground">{repo.desc}</p>
+              </motion.a>
+            ))}
           </motion.div>
         </motion.div>
       </Container>

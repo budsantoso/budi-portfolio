@@ -94,6 +94,18 @@ export default async function ProjectPage({ params }: PageProps) {
               </Badge>
             ))}
           </div>
+
+          {project.githubUrl && (
+            <Link
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
+            >
+              View source code
+              <ArrowUpRight className="size-4" />
+            </Link>
+          )}
         </header>
 
         {/* Optional Project Image */}

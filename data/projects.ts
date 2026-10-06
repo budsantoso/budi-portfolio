@@ -6,6 +6,7 @@ export interface Project {
   technologies: string[];
   featured: boolean;
   image?: string;
+  githubUrl?: string;
   problem: string;
   solution: string;
   architecture: string[];
@@ -147,8 +148,9 @@ export const projects: Project[] = [
     category: "AI / Business Automation",
     summary:
       "A Laravel-based invoice processing application that accepts scanned invoices, extracts information, compares products against a master product database, and automatically creates missing master products.",
-    technologies: ["Laravel", "PHP", "SQL Server", "S3", "MinIO", "REST API"],
+    technologies: ["FastAPI", "Python", "Product Matching", "CSV Export", "Docker"],
     featured: true,
+    githubUrl: "https://github.com/budsantoso/invoice-intelligence-platform",
     problem:
       "Manual invoice processing is slow, error-prone, and requires significant human effort to extract data, match products, and maintain a master product database.",
     solution:
@@ -191,8 +193,9 @@ export const projects: Project[] = [
     category: "Backend Architecture / API Gateway",
     summary:
       "Designed and implemented a high-performance API gateway using FastAPI that routes requests to multiple microservices, handles authentication, rate limiting, and load balancing across distributed backend services.",
-    technologies: ["FastAPI", "Python", "Redis", "Nginx", "Docker", "JWT"],
+    technologies: ["FastAPI", "Python", "JWT", "Rate Limiting", "Docker"],
     featured: true,
+    githubUrl: "https://github.com/budsantoso/fastapi-api-gateway",
     problem:
       "Monolithic API was becoming a bottleneck with growing service complexity. Different teams needed independent deployment cycles, but clients required a unified entry point with consistent authentication and rate limiting.",
     solution:
@@ -237,8 +240,9 @@ export const projects: Project[] = [
     category: "Financial Systems / Data Integrity",
     summary:
       "Built an automated payment reconciliation engine that matches transactions across multiple payment gateways (Midtrans, Xendit, DOKU) against internal financial records, flagging discrepancies and generating audit reports.",
-    technologies: ["Laravel", "Python", "MySQL", "Redis", "Midtrans", "Xendit", "DOKU"],
+    technologies: ["FastAPI", "Python", "CSV", "Audit Reports", "Docker"],
     featured: true,
+    githubUrl: "https://github.com/budsantoso/payment-reconciliation-system",
     problem:
       "Manual reconciliation of payment data across multiple gateways was consuming 20+ hours weekly, with frequent human errors causing financial discrepancies that took days to identify and resolve.",
     solution:
